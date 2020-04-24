@@ -6,8 +6,8 @@
 #SBATCH --exclude node017,node018
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ehoseini@mit.edu
-#SBATCH --output=om_DV_trade_off_result_%j.out
-#SBATCH --error=om_DV_trade_off_result_%j.err
+#SBATCH --output=namd_result_%j.out
+#SBATCH --error=namd_result_%j.err
 
 set -e; set -o pipefail
 
