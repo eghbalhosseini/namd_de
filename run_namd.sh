@@ -1,14 +1,19 @@
 #!/bin/bash
-
+#SBATCH --job-name=run_namd
 #SBATCH --nodes 2
 #SBATCH --ntasks=16
 #SBATCH --time 00:10:00
+#SBATCH --exclude node017,node018
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ehoseini@mit.edu
+#SBATCH --output=om_DV_trade_off_result_%j.out
+#SBATCH --error=om_DV_trade_off_result_%j.err
 
 set -e; set -o pipefail
 
 # Load required modules
-module load singularity
-
+module add openmind/singularity
+export SINGULARITY_CACHEDIR=/om/user/`whoami`/st/
 # Download APOA1 example input
 wget -O - https://gitlab.com/NVHCP/ngc-examples/raw/master/namd/2.13/get_apoa1.sh | bash
 INPUT="/host_pwd/apoa1/apoa1.namd"
