@@ -33,9 +33,9 @@ SSH="ssh -o PubkeyAcceptedKeyTypes=+ssh-dss -o UserKnownHostsFile=/dev/null -o S
 CHARMRUN="charmrun ++remote-shell \"${SSH}\" ++nodelist ${NODELIST} ++p ${SLURM_NTASKS} ++ppn ${SLURM_CPUS_ON_NODE}"
 # namd2 alias
 NAMD2="namd2 +setcpuaffinity +idlepoll ${INPUT}"
-printf "${SINGULARITY} \n"
 # Launch parallel namd
 #eval "${SINGULARITY} ${CHARMRUN} ${SINGULARITY} ${NAMD2}"
+printf "${SINGULARITY} ${NAMD2} \n"
 eval "${SINGULARITY} ${NAMD2}"
 
 # Cleanup nodelist
