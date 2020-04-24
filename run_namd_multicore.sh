@@ -1,13 +1,14 @@
 #!/bin/bash
 #SBATCH --job-name=run_namd
-#SBATCH --nodes 2
-#SBATCH --ntasks=16
-#SBATCH --time 00:10:00
+#SBATCH --mem=40000
+#SBATCH --array=1
+#SBATCH --gres=gpu:titan-x:1
+#SBATCH --time=0-01:00:00
 #SBATCH --exclude node017,node018
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ehoseini@mit.edu
-#SBATCH --output=namd_result_%j.out
-#SBATCH --error=namd_result_%j.err
+#SBATCH --output=namd_multi_result_%j.out
+#SBATCH --error=namd_multi_result_%j.err
 
 set -e; set -o pipefail
 
