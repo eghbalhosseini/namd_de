@@ -29,15 +29,14 @@ SIMG="/om/user/ehoseini/simg_images/namd_2.13-multinode.simg"
 SINGULARITY="$(which singularity) exec --nv -B $(pwd):/host_pwd ${SIMG}"
 
 # charmrun alias
-printf "starting namd/n"
 SSH="ssh -o PubkeyAcceptedKeyTypes=+ssh-dss -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=ERROR"
 CHARMRUN="charmrun ++remote-shell \"${SSH}\" ++nodelist ${NODELIST} ++p ${SLURM_NTASKS} ++ppn ${SLURM_CPUS_ON_NODE}"
-printf "charmrum worked /n"
 # namd2 alias
 NAMD2="namd2 +setcpuaffinity +idlepoll ${INPUT}"
-
+printf "${SINGULARITY} \n"
 # Launch parallel namd
-eval "${SINGULARITY} ${CHARMRUN} ${SINGULARITY} ${NAMD2}"
+#eval "${SINGULARITY} ${CHARMRUN} ${SINGULARITY} ${NAMD2}"
+eval "${SINGULARITY} ${NAMD2}"
 
 # Cleanup nodelist
 rm ${NODELIST}
