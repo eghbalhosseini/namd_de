@@ -35,9 +35,9 @@ CHARMRUN="charmrun ++remote-shell \"${SSH}\" ++nodelist ${NODELIST} ++p ${SLURM_
 # namd2 alias
 NAMD2="namd2 +setcpuaffinity +idlepoll ${INPUT}"
 # Launch parallel namd
-#eval "${SINGULARITY} ${CHARMRUN} ${SINGULARITY} ${NAMD2}"
-printf "${SINGULARITY} ${NAMD2} \n"
-eval "${SINGULARITY} ${NAMD2}"
+printf "${SINGULARITY} ${NAMD2} ${SINGULARITY} ${NAMD2} \n"
+eval "${SINGULARITY} ${CHARMRUN} ${SINGULARITY} ${NAMD2}"
+#eval "${SINGULARITY} ${NAMD2}"
 
 # Cleanup nodelist
 rm ${NODELIST}
